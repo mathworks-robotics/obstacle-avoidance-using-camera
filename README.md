@@ -56,7 +56,7 @@ When you open the model and execute it, the drone will take off from the helipad
 
 *Note:* Do not change the *Bird's Eye* View in the *On-board Camera* and *Virtual Reality Sensors* block. This will affect the optical flow algorithm since we need the images from the front camera.
 
-<img src="Models/ReadmePhotos/CameraView.PNG" width="800" title="Do not change the view from the Camera or Virtual Reality Sensor">
+<img src="Models/ReadmePhotos/CameraView.png" width="800" title="Do not change the view from the Camera or Virtual Reality Sensor">
 
 
 
