@@ -21,7 +21,7 @@ The following steps describe the workflow:
 When you open the model and execute it, the drone will take off from the helipad, navigate by evading the obstacles, switch to PID Controller once it detects that it is close to the landing area and eventually, land on the landing helipad. 
 
 
-<img src="Models/ReadmePhotos/ModelComponents.PNG" width="800" title="Locations and naming of the model components explained using the side view of the Simulink 3D environment">
+<img src="Models/ReadmePhotos/ModelComponents.png" width="800" title="Locations and naming of the model components explained using the side view of the Simulink 3D environment">
 
 
 ## Model ##
