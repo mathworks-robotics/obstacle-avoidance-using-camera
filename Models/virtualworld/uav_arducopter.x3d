@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+<X3D profile='Immersive' version='3.3' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd'>
+<head>
+</head>
+<!--Arducopter model-->
+<!--PROTO to be used in the UAV scene-->
+<!--Copyright 2012-2018 HUMUSOFT s.r.o. and The MathWorks, Inc.-->
+<Scene>
+<ProtoDeclare name='Copter_Arm'>
+<ProtoInterface>
+<field name='Shaft_Rotation' type='SFRotation' accessType='inputOutput' value='0 1 0 0'/>
+<field name='Propeller_Mode' type='SFInt32' accessType='inputOutput' value='0'/>
+<field name='Arm_Rot' type='SFRotation' accessType='initializeOnly' value='0 1 0 0'/>
+<field name='Prop_Right_Left' type='SFInt32' accessType='initializeOnly' value='0'/>
+<field name='Rod_Red_Gray' type='SFInt32' accessType='initializeOnly' value='0'/>
+</ProtoInterface>
+<ProtoBody>
+  <Transform>
+  <IS>
+  <connect protoField='Arm_Rot' nodeField='rotation' />
+  </IS>
+    <Transform DEF='Rod'  translation='0.15 0 0'>
+      <Switch>
+      <IS>
+      <connect protoField='Rod_Red_Gray' nodeField='whichChoice' />
+      </IS>
+        <!--red rod-->
+        <Shape>
+          <Appearance>
+            <Material emissiveColor='0.2 0 0' diffuseColor='0.7 0.1 0.1'>
+            </Material>
+          </Appearance>
+          <Box size='0.3 0.016 0.016'>
+          </Box>
+        </Shape>
+        <!--gray rod-->
+        <Shape>
+          <Appearance>
+            <Material specularColor='0.63 0.92 1' diffuseColor='0.102 0.506 0.784' ambientIntensity='0'>
+            </Material>
+          </Appearance>
+          <Box size='0.3 0.016 0.016'>
+          </Box>
+        </Shape>
+      </Switch>
+    </Transform>
+    <Transform DEF='Plexi_Arc'  translation='0.015 0.008 0.008'>
+      <Shape>
+        <Appearance DEF='Plexi' >
+          <Material transparency='0.5' specularColor='1 0.94 0.54' shininess='0.83' emissiveColor='0.4 0.4 0.4' diffuseColor='0.5 0.5 0.5' ambientIntensity='0'>
+          </Material>
+        </Appearance>
+        <Extrusion spine='0 0 0.002 0 0 0' crossSection='0.072 0 0.0718 0.0056 0.0711 0.0113 0.07 0.0168 0.0685 0.0222 0.0665 0.0276 0.0642 0.0327 0.0614 0.0376 0.0582 0.0423 0.0547 0.0468 0.0509 0.0509 0.0468 0.0547 0.0423 0.0582 0.0376 0.0614 0.0327 0.0642 0.0276 0.0665 0.0222 0.0685 0.0168 0.07 0.0113 0.0711 0.0056 0.0718 0 0.072 0 0.084 0.0066 0.0837 0.0131 0.083 0.0196 0.0817 0.026 0.0799 0.0321 0.0776 0.0381 0.0748 0.0439 0.0716 0.0494 0.068 0.0546 0.0639 0.0594 0.0594 0.0639 0.0546 0.068 0.0494 0.0716 0.0439 0.0748 0.0381 0.0776 0.0321 0.0799 0.026 0.0817 0.0196 0.083 0.0131 0.0837 0.0066 0.084 0 0.084 -0.016 0.078 -0.05 0.072 -0.05 0.072 0'>
+        </Extrusion>
+      </Shape>
+    </Transform>
+    <Transform DEF='Propeller_Assembly'  translation='0.3 0.015 0'>
+      <!--Main motor-->
+      <Transform>
+        <Shape>
+          <Appearance DEF='Black_Metal' >
+            <Material specularColor='0.5 0.5 0.5' diffuseColor='0 0 0' ambientIntensity='0'>
+            </Material>
+          </Appearance>
+          <Cylinder radius='0.019' height='0.015'>
+          </Cylinder>
+        </Shape>
+        <Transform translation='0 0.025 0'>
+          <Shape>
+            <Appearance DEF='Blue_Metal' >
+              <Material specularColor='0.63 0.92 1' diffuseColor='0 0 0.5' ambientIntensity='0'>
+              </Material>
+            </Appearance>
+            <Cylinder radius='0.019' height='0.035'>
+            </Cylinder>
+          </Shape>
+        </Transform>
+      </Transform>
+      <!--Main shaft-->
+      <!--rotation 1 0 0 1.5708-->
+      <Transform translation='0 0.05 0'>
+        <Shape>
+          <Appearance DEF='Aluminium' >
+            <Material specularColor='0.39 0.39 0.39' shininess='0.11' diffuseColor='0.51 0.51 0.51' ambientIntensity='0.25'>
+            </Material>
+          </Appearance>
+          <Cylinder radius='0.004' height='0.02'>
+          </Cylinder>
+        </Shape>
+      </Transform>
+      <!--Main propeller bed-->
+      <!--rotation 1 0 0 1.5708-->
+      <Transform translation='0 0.05 0'>
+        <Shape>
+          <Appearance USE='Aluminium' >
+          </Appearance>
+          <Cylinder radius='0.009' height='0.004'>
+          </Cylinder>
+        </Shape>
+      </Transform>
+      <!--Main Rotor-->
+      <!--end of switch-->
+      <Transform translation='0 0.05 0'>
+        <Switch DEF='Rotor_Mode' >
+        <IS>
+        <connect protoField='Propeller_Mode' nodeField='whichChoice' />
+        </IS>
+          <!--end of choice 1 - cylinder approximation only-->
+          <!--full rotor - rotation to be controlled-->
+          <Transform DEF='MainRotor' >
+          <IS>
+          <connect protoField='Shaft_Rotation' nodeField='rotation' />
+          </IS>
+            <Group DEF='TwoBlades' >
+              <Switch DEF='Right_Left' >
+              <IS>
+              <connect protoField='Prop_Right_Left' nodeField='whichChoice' />
+              </IS>
+                <Transform DEF='Blades_Right' >
+                  <Transform DEF='Blade_1R'  translation='0.0045 0.00375 0.006' scale='1 2 2' rotation='1 0 0 1.83'>
+                    <Shape DEF='Blade1R_Shape' >
+                      <Appearance DEF='BladeColor' >
+                        <Material specularColor='0.1 0.1 0.1' emissiveColor='0.1 0.1 0.1' diffuseColor='0.1 0.1 0.1' ambientIntensity='0'>
+                        </Material>
+                      </Appearance>
+                      <Extrusion spine='0.0008 0 0 0.1 0 0' crossSection='-0.002 0 0.0012 -0.0002 0.002 -0.0004 0.0032 -0.0006 0.0044 -0.0007 0.0056 -0.0006 0.006 -0.0005 0.0064 -0.0004 0.00662 0 0.0064 0.00032 0.006 0.00036 0.0056 0.0004 0.0044 0.0004 0.0032 0.0004 0.002 0.00036 0.0012 0.0002 -0.002 0' creaseAngle='0.8' ccw='false'>
+                      </Extrusion>
+                    </Shape>
+                  </Transform>
+                  <Transform DEF='Blade_2R'  translation='-0.0045 0.00375 -0.006' scale='1 2 2' rotation='1 0 0 1.31'>
+                    <Shape DEF='Blade2R_Shape' >
+                      <Appearance USE='BladeColor' >
+                      </Appearance>
+                      <Extrusion spine='-0.0008 0 0 -0.1 0 0' crossSection='-0.002 0 0.0012 -0.0002 0.002 -0.0004 0.0032 -0.0006 0.0044 -0.0007 0.0056 -0.0006 0.006 -0.0005 0.0064 -0.0004 0.00662 0 0.0064 0.00032 0.006 0.00036 0.0056 0.0004 0.0044 0.0004 0.0032 0.0004 0.002 0.00036 0.0012 0.0002 -0.002 0' creaseAngle='0.8' ccw='false'>
+                      </Extrusion>
+                    </Shape>
+                  </Transform>
+                </Transform>
+                <Transform DEF='Blades_Left' >
+                  <Transform DEF='Blade_1L'  translation='-0.105 0.00375 0.006' scale='1 2 2' rotation='1 0 0 1.83'>
+                    <Shape DEF='Blade1L_Shape' >
+                      <Appearance USE='BladeColor' >
+                      </Appearance>
+                      <Extrusion spine='0.0008 0 0 0.1 0 0' crossSection='-0.002 0 0.0012 -0.0002 0.002 -0.0004 0.0032 -0.0006 0.0044 -0.0007 0.0056 -0.0006 0.006 -0.0005 0.0064 -0.0004 0.00662 0 0.0064 0.00032 0.006 0.00036 0.0056 0.0004 0.0044 0.0004 0.0032 0.0004 0.002 0.00036 0.0012 0.0002 -0.002 0' creaseAngle='0.8' ccw='false'>
+                      </Extrusion>
+                    </Shape>
+                  </Transform>
+                  <Transform DEF='Blade_2LR'  translation='0.105 0.00375 -0.006' scale='1 2 2' rotation='1 0 0 1.31'>
+                    <Shape DEF='Blade2L_Shape' >
+                      <Appearance USE='BladeColor' >
+                      </Appearance>
+                      <Extrusion spine='-0.0008 0 0 -0.1 0 0' crossSection='-0.002 0 0.0012 -0.0002 0.002 -0.0004 0.0032 -0.0006 0.0044 -0.0007 0.0056 -0.0006 0.006 -0.0005 0.0064 -0.0004 0.00662 0 0.0064 0.00032 0.006 0.00036 0.0056 0.0004 0.0044 0.0004 0.0032 0.0004 0.002 0.00036 0.0012 0.0002 -0.002 0' creaseAngle='0.8' ccw='false'>
+                      </Extrusion>
+                    </Shape>
+                  </Transform>
+                </Transform>
+              </Switch>
+            </Group>
+          </Transform>
+          <!--end of choice 0 - static rotor-->
+          <Group>
+            <!--Main propeller cylinder approximation-->
+            <!--rotation 1 0 0 1.5708-->
+            <Transform translation='0 0.005 0'>
+              <Shape>
+                <Appearance>
+                  <Material transparency='0.8' specularColor='0.2 0.2 0.2' shininess='0.05' diffuseColor='0.1 0.1 0.1'>
+                  </Material>
+                </Appearance>
+                <Cylinder radius='0.105' height='0.005'>
+                </Cylinder>
+              </Shape>
+            </Transform>
+          </Group>
+        </Switch>
+      </Transform>
+      <!--Main shaft bolt-->
+      <!--rotation 1 0 0 1.5708-->
+      <Transform translation='0 0.064 0'>
+        <Shape>
+          <Appearance USE='Aluminium' >
+          </Appearance>
+          <Cone height='0.012' bottomRadius='0.009'>
+          </Cone>
+        </Shape>
+      </Transform>
+    </Transform>
+  </Transform>
+</ProtoBody></ProtoDeclare>
+<ProtoDeclare name='Arducopter'>
+<ProtoInterface>
+<field name='Propeller_Mode_4' type='SFInt32' accessType='inputOutput' value='0'/>
+<field name='Shaft_Rot_4' type='SFRotation' accessType='inputOutput' value='0 1 0 2.5'/>
+<field name='Propeller_Mode_3' type='SFInt32' accessType='inputOutput' value='0'/>
+<field name='Shaft_Rot_3' type='SFRotation' accessType='inputOutput' value='0 1 0 2'/>
+<field name='Propeller_Mode_2' type='SFInt32' accessType='inputOutput' value='0'/>
+<field name='Shaft_Rot_2' type='SFRotation' accessType='inputOutput' value='0 1 0 1.5'/>
+<field name='Propeller_Mode_1' type='SFInt32' accessType='inputOutput' value='0'/>
+<field name='Shaft_Rot_1' type='SFRotation' accessType='inputOutput' value='0 1 0 1'/>
+<field name='translation' type='SFVec3f' accessType='inputOutput' value='0 0 0'/>
+<field name='rotation' type='SFRotation' accessType='inputOutput' value='0 1 0 0'/>
+</ProtoInterface>
+<ProtoBody>
+  <Transform DEF='ACopter' >
+  <IS>
+  <connect protoField='translation' nodeField='translation' />
+  <connect protoField='rotation' nodeField='rotation' />
+  </IS>
+    <!--End of body-->
+    <Transform DEF='Body_Offset'  translation='0 0.1 0'>
+      <!--Place the copter on the surface - Y offset if any-->
+      <Transform DEF='Copter_Body'  translation='0 0.042 0'>
+        <ProtoInstance DEF='Arm_1' name='Copter_Arm'>
+        <fieldValue name='Arm_Rot' value='0 1 0 0'/>
+        <fieldValue name='Prop_Right_Left' value='1'/>
+        <fieldValue name='Rod_Red_Gray' value='0'/>
+        <IS>
+        <connect protoField='Shaft_Rot_1' nodeField='Shaft_Rotation' />
+        <connect protoField='Propeller_Mode_1' nodeField='Propeller_Mode' />
+        </IS>
+        </ProtoInstance>
+        <ProtoInstance DEF='Arm_2' name='Copter_Arm'>
+        <fieldValue name='Arm_Rot' value='0 1 0 1.5708'/>
+        <fieldValue name='Prop_Right_Left' value='0'/>
+        <fieldValue name='Rod_Red_Gray' value='1'/>
+        <IS>
+        <connect protoField='Shaft_Rot_2' nodeField='Shaft_Rotation' />
+        <connect protoField='Propeller_Mode_2' nodeField='Propeller_Mode' />
+        </IS>
+        </ProtoInstance>
+        <ProtoInstance DEF='Arm_3' name='Copter_Arm'>
+        <fieldValue name='Arm_Rot' value='0 1 0 3.14159'/>
+        <fieldValue name='Prop_Right_Left' value='1'/>
+        <fieldValue name='Rod_Red_Gray' value='1'/>
+        <IS>
+        <connect protoField='Shaft_Rot_3' nodeField='Shaft_Rotation' />
+        <connect protoField='Propeller_Mode_3' nodeField='Propeller_Mode' />
+        </IS>
+        </ProtoInstance>
+        <ProtoInstance DEF='Arm_4' name='Copter_Arm'>
+        <fieldValue name='Arm_Rot' value='0 1 0 4.71239'/>
+        <fieldValue name='Prop_Right_Left' value='0'/>
+        <fieldValue name='Rod_Red_Gray' value='1'/>
+        <IS>
+        <connect protoField='Shaft_Rot_4' nodeField='Shaft_Rotation' />
+        <connect protoField='Propeller_Mode_4' nodeField='Propeller_Mode' />
+        </IS>
+        </ProtoInstance>
+        <Transform DEF='Body' >
+          <Transform DEF='Blue_Box'  translation='0 -0.022 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor='0.2 0.3 0.8'>
+                </Material>
+              </Appearance>
+              <Box size='0.12 0.025 0.05'>
+              </Box>
+            </Shape>
+          </Transform>
+          <Transform DEF='Rhomb_Base' >
+            <Transform DEF='RB_Lower'  translation='0 -0.01 0'>
+              <Shape DEF='RB_Shape' >
+                <Appearance DEF='Grey_Metal' >
+                  <!--specularColor .29 .29 .29-->
+                  <Material shininess='0.11' diffuseColor='0.51 0.51 0.51' ambientIntensity='0.15'>
+                  </Material>
+                </Appearance>
+                <Extrusion spine='0 0 0 0 0.002 0' crossSection='0.008 0.08 0.08 0.008 0.08 -0.008 0.008 -0.08 -0.008 -0.08 -0.08 -0.008 -0.08 0.008 -0.008 0.08 0.008 0.08'>
+                </Extrusion>
+              </Shape>
+            </Transform>
+            <Transform DEF='RB_Upper'  translation='0 0.01 0'>
+              <Shape USE='RB_Shape' >
+              </Shape>
+            </Transform>
+          </Transform>
+          <Transform DEF='Yellow_Box'  translation='0 0.025 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor='0.7 0.5 0'>
+                </Material>
+              </Appearance>
+              <Box size='0.09 0.025 0.09'>
+              </Box>
+            </Shape>
+          </Transform>
+          <Transform DEF='Gray_Box'  translation='0 0.05 0'>
+            <Shape>
+              <Appearance>
+                <Material diffuseColor='0.4 0.4 0.4'>
+                </Material>
+              </Appearance>
+              <Box size='0.07 0.03 0.07'>
+              </Box>
+            </Shape>
+          </Transform>
+          <Transform DEF='Plexi_Cylinder'  translation='0 0.086 0'>
+            <Shape>
+              <Appearance DEF='Plexi' >
+                <Material transparency='0.28' specularColor='1 0.94 0.54' shininess='0.83' emissiveColor='0.4 0.4 0.4' diffuseColor='0.29 0.29 0.29' ambientIntensity='0'>
+                </Material>
+              </Appearance>
+              <Cylinder radius='0.018' height='0.012'>
+              </Cylinder>
+            </Shape>
+          </Transform>
+        </Transform>
+      </Transform>
+    </Transform>
+    <!--LOD that shows a red transparent Sphere from distance &gt; 5m-->
+    <LOD range='5'>
+      <Group>
+      </Group>
+      <Transform DEF='Aura' >
+        <Shape>
+          <Appearance>
+            <Material transparency='0.8' diffuseColor='1 0 0'>
+            </Material>
+          </Appearance>
+          <Sphere>
+          </Sphere>
+        </Shape>
+      </Transform>
+    </LOD>
+    <Transform DEF='Camera_Ride'  translation='-1.8 1 0' rotation='0 1 0 -1.5708'>
+      <Viewpoint DEF='VP_Ride'  description='Ride on the UAV Tail' position='0 0 0' orientation='1 0 0 -0.4' fieldOfView='1.2'>
+      </Viewpoint>
+    </Transform>
+    <Transform DEF='Camera_BirdsEye'  rotation='0 1 0 -1.5708'>
+      <Viewpoint DEF='VP_BirdsEye'  description='Bird&apos;s Eye' position='0 0.3 0' orientation='1 0 0 -0.2' fieldOfView='1.2'>
+      </Viewpoint>
+    </Transform>
+  </Transform>
+</ProtoBody></ProtoDeclare>
+</Scene>
+</X3D>

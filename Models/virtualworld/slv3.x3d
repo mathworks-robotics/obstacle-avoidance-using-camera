@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+<X3D profile='Immersive' version='3.3' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd'>
+<head>
+</head>
+<Scene>
+<ExternProtoDeclare name='Arducopter' url='"uav_arducopter.x3d#Arducopter" '>
+<field name='rotation' type='SFRotation' accessType='inputOutput'/>
+<field name='translation' type='SFVec3f' accessType='inputOutput'/>
+<field name='Shaft_Rot_1' type='SFRotation' accessType='inputOutput'/>
+<field name='Propeller_Mode_1' type='SFInt32' accessType='inputOutput'/>
+<field name='Shaft_Rot_2' type='SFRotation' accessType='inputOutput'/>
+<field name='Propeller_Mode_2' type='SFInt32' accessType='inputOutput'/>
+<field name='Shaft_Rot_3' type='SFRotation' accessType='inputOutput'/>
+<field name='Propeller_Mode_3' type='SFInt32' accessType='inputOutput'/>
+<field name='Shaft_Rot_4' type='SFRotation' accessType='inputOutput'/>
+<field name='Propeller_Mode_4' type='SFInt32' accessType='inputOutput'/>
+
+</ExternProtoDeclare>
+
+<ExternProtoDeclare name='Pole' url='"uav_protos.x3d#Pole" '>
+<field name='Position' type='SFVec3f' accessType='inputOutput'/>
+<field name='Color' type='SFColor' accessType='inputOutput'/>
+
+</ExternProtoDeclare>
+
+<WorldInfo title='UAV Competition Scene' info='"Copyright 2012-2018 HUMUSOFT s.r.o. and The MathWorks, Inc." '>
+</WorldInfo>
+<ProximitySensor DEF='User'  size='1e+07 1e+07 1e+07'>
+</ProximitySensor>
+<!--avatarSize [0] smaller than default to avoid HUD clipping-->
+<!--visibilityLimit 200000-->
+<NavigationInfo type='"FLY" ' avatarSize='0.2 1.6 0.75'>
+</NavigationInfo>
+<DirectionalLight direction='-1 -1 -1' ambientIntensity='0.5' intensity='0.6'>
+</DirectionalLight>
+<DirectionalLight direction='1 -1 1' ambientIntensity='0.5' intensity='0.6'>
+</DirectionalLight>
+<Transform DEF='Camera_Overview'  translation='11 7 15' rotation='0 1 0 0.4'>
+  <Viewpoint DEF='VP_Overview'  fieldOfView='0.7854' description='Overview' orientation='1 0 0 -0.5' position='0 0 0'>
+  </Viewpoint>
+</Transform>
+<Transform DEF='Camera_Observe'  translation='-2.2 0.1 5.8' rotation='0 1 0 0'>
+  <Transform translation='-1.8 1 0' rotation='0 1 0 -1.5708'>
+    <Viewpoint fieldOfView='1.2' description='Observe UAV' orientation='1 0 0 -0.2' position='0 0 0'>
+    </Viewpoint>
+  </Transform>
+</Transform>
+<Transform DEF='Camera_TO'  translation='-5.5 1.7 7' rotation='0 1 0 -1.2'>
+  <Viewpoint DEF='VP_TakeOff'  fieldOfView='0.7854' description='View on the Take-Off' orientation='1 0 0 -0.2' position='0 0 0'>
+  </Viewpoint>
+</Transform>
+<Viewpoint DEF='VP_Top'  fieldOfView='0.7854' description='View from the Top' orientation='1 0 0 -1.5708' position='6 20 4'>
+</Viewpoint>
+<Transform DEF='Camera_Landing'  translation='22 4 4' rotation='0 1 0 1.5708'>
+  <Viewpoint DEF='VP_Landing'  fieldOfView='0.7854' description='View on the Landing Area' orientation='1 0 0 -0.3' position='0 0 0'>
+  </Viewpoint>
+</Transform>
+<Switch DEF='Triad_Visible' >
+  <Transform DEF='Triad'  scale='10 10 10'>
+    <Shape DEF='Triad_Shape' >
+      <IndexedLineSet DEF='Triad_Geometry'  coordIndex='0 1 -1 0 2 -1 0 3 -1' colorPerVertex='false' colorIndex='0 1 2'>
+        <Coordinate point='0 0 0 1 0 0 0 1 0 0 0 1'>
+        </Coordinate>
+        <Color color='1 0 0 0 1 0 0 0 1'>
+        </Color>
+      </IndexedLineSet>
+    </Shape>
+  </Transform>
+</Switch>
+<Transform DEF='Landing_Platform'  translation='14 0 4'>
+  <Transform DEF='Landing_Block'  translation='0 0.2 0'>
+    <Shape>
+      <Appearance>
+        <Material DEF='Landing_Mat'  diffuseColor='0.5 0.5 0.5'>
+        </Material>
+      </Appearance>
+      <Cylinder radius='0.5' height='0.4'>
+      </Cylinder>
+    </Shape>
+  </Transform>
+  <Transform DEF='Helipad'  translation='0 0.4 0'>
+    <Shape>
+      <Appearance>
+        <TextureTransform translation='-0.2 0.525' scale='0.7 1.05' rotation='-0.5' center='0.5 0.5'>
+        </TextureTransform>
+        <ImageTexture url='"uav_heliport.png" ' repeatS='false' repeatT='false'>
+        </ImageTexture>
+        <Material diffuseColor='0.5 0.5 0.5'>
+        </Material>
+      </Appearance>
+      <Cylinder side='false' radius='0.5' height='0.01' bottom='false'>
+      </Cylinder>
+    </Shape>
+  </Transform>
+</Transform>
+<Transform DEF='Poles'  containerField='pickTarget' translation='2 0 0'>
+  <ProtoInstance DEF='Pole_1' name='Pole'>
+  <fieldValue name='Position' value='-0.5 0 3'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_2' name='Pole'>
+  <fieldValue name='Position' value='-0.5 0 5.5'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_3' name='Pole'>
+  <fieldValue name='Position' value='1.5 0 1.5'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_4' name='Pole'>
+  <fieldValue name='Position' value='1.5 0 6.5'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_5' name='Pole'>
+  <fieldValue name='Position' value='2 0 4'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_6' name='Pole'>
+  <fieldValue name='Position' value='3 0 2'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_7' name='Pole'>
+  <fieldValue name='Position' value='3.2 0 6'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_8' name='Pole'>
+  <fieldValue name='Position' value='4 0 4.5'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_9' name='Pole'>
+  <fieldValue name='Position' value='9 0 6'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_10' name='Pole'>
+  <fieldValue name='Position' value='5.5 0 6'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_11' name='Pole'>
+  <fieldValue name='Position' value='6 0 2.5'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_12' name='Pole'>
+  <fieldValue name='Position' value='7 0 7'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_13' name='Pole'>
+  <fieldValue name='Position' value='8 0 4'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_14' name='Pole'>
+  <fieldValue name='Position' value='6 0 4.5'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_15' name='Pole'>
+  <fieldValue name='Position' value='8.75 0 1.5'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+  <ProtoInstance DEF='Pole_16' name='Pole'>
+  <fieldValue name='Position' value='5 0 1'/>
+  <fieldValue name='Color' value='1 0.5 0'/>
+  </ProtoInstance>
+</Transform>
+<Transform DEF='UAV'  translation='-1.5 0 4'>
+  <!--translation	0 0 0-->
+  <Transform DEF='UAV_Col_Transf'  translation='0 0.16 0' rotation='0 1 0 0.785398'>
+    <Shape DEF='UAV_Col_Shape' >
+      <Appearance>
+        <Material transparency='1'>
+        </Material>
+      </Appearance>
+      <!--										geometry DEF UAV_Collision_Box Cylinder {-->
+      <!--												height	0.1-->
+      <!--												radius		0.4-->
+      <!--										}-->
+      <Box DEF='UAV_Collision_Box'  size='0.6 0.1 0.6'>
+      </Box>
+    </Shape>
+    <Transform translation='0 -0.16 0' rotation='0 1 0 -0.785398'>
+      <ProtoInstance DEF='UAV_Body' name='Arducopter'>
+      <fieldValue name='rotation' value='0 1 0 0'/>
+      <fieldValue name='translation' value='0 0 0'/>
+      <fieldValue name='Shaft_Rot_1' value='0 1 0 1'/>
+      <fieldValue name='Propeller_Mode_1' value='0'/>
+      <fieldValue name='Shaft_Rot_2' value='0 1 0 1.5'/>
+      <fieldValue name='Propeller_Mode_2' value='0'/>
+      <fieldValue name='Shaft_Rot_3' value='0 1 0 2'/>
+      <fieldValue name='Propeller_Mode_3' value='0'/>
+      <fieldValue name='Shaft_Rot_4' value='0 1 0 2.5'/>
+      <fieldValue name='Propeller_Mode_4' value='0'/>
+      </ProtoInstance>
+    </Transform>
+    <PrimitivePickSensor DEF='Sensor_Wall'  intersectionType='GEOMETRY' sortOrder='CLOSEST'>
+      <!--										geometry DEF UAV_Collision_Box Cylinder {-->
+      <!--												height	0.1-->
+      <!--												radius		0.4-->
+      <!--										}-->
+      <Box USE='UAV_Collision_Box'  containerField='pickingGeometry'>
+      </Box>
+      <Transform DEF='Start_Wall'  containerField='pickTarget'>
+        <Transform DEF='Wall_Block_1'  translation='0.1 0.5 4'>
+          <Shape>
+            <Appearance>
+              <!--specularColor .31 .28 .26-->
+              <Material DEF='Wall_Mat'  shininess='0.07' emissiveColor='0 0.1 0.11' diffuseColor='0 0.36 0.42' ambientIntensity='0.0133'>
+              </Material>
+            </Appearance>
+            <Box size='0.2 1 8'>
+            </Box>
+          </Shape>
+        </Transform>
+        <Transform DEF='Wall_Block_2'  translation='0.1 2.3 4'>
+          <Shape>
+            <Appearance>
+              <!--specularColor .31 .28 .26-->
+              <Material USE='Wall_Mat' >
+              </Material>
+            </Appearance>
+            <Box size='0.2 0.6 8'>
+            </Box>
+          </Shape>
+        </Transform>
+        <Transform DEF='Wall_Block_3'  translation='0.1 1.5 0.8'>
+          <Shape>
+            <Appearance>
+              <!--specularColor .31 .28 .26-->
+              <Material USE='Wall_Mat' >
+              </Material>
+            </Appearance>
+            <Box size='0.2 1 1.6'>
+            </Box>
+          </Shape>
+        </Transform>
+        <Transform DEF='Wall_Block_4'  translation='0.1 1.5 3.8'>
+          <Shape>
+            <Appearance>
+              <!--specularColor .31 .28 .26-->
+              <Material USE='Wall_Mat' >
+              </Material>
+            </Appearance>
+            <Box size='0.2 1 2.8'>
+            </Box>
+          </Shape>
+        </Transform>
+        <Transform DEF='Wall_Block_5'  translation='0.1 1.5 7.4'>
+          <Shape>
+            <Appearance>
+              <!--specularColor .31 .28 .26-->
+              <Material USE='Wall_Mat' >
+              </Material>
+            </Appearance>
+            <Box size='0.2 1 1.2'>
+            </Box>
+          </Shape>
+        </Transform>
+      </Transform>
+    </PrimitivePickSensor>
+    <PrimitivePickSensor DEF='Sensor_Start'  intersectionType='GEOMETRY' sortOrder='CLOSEST'>
+      <!--										geometry DEF UAV_Collision_Box Cylinder {-->
+      <!--												height	0.1-->
+      <!--												radius		0.4-->
+      <!--										}-->
+      <Box USE='UAV_Collision_Box'  containerField='pickingGeometry'>
+      </Box>
+      <!--Transparent window used to detect UAV passing the starting window in the wall-->
+      <Transform DEF='Start_Window'  containerField='pickTarget'>
+        <Shape DEF='Window' >
+          <Appearance>
+            <Material DEF='Window_Mat'  transparency='1' diffuseColor='0.1 0.8 0.1'>
+            </Material>
+          </Appearance>
+          <IndexedFaceSet coordIndex='0 1 2 3 -1' solid='false'>
+            <Coordinate point='0 1 5.2 0 1 6.8 0 2 6.8 0 2 5.2'>
+            </Coordinate>
+          </IndexedFaceSet>
+        </Shape>
+      </Transform>
+    </PrimitivePickSensor>
+    <PrimitivePickSensor DEF='Sensor_Poles'  intersectionType='GEOMETRY' sortOrder='CLOSEST'>
+      <!--										geometry DEF UAV_Collision_Box Cylinder {-->
+      <!--												height	0.1-->
+      <!--												radius		0.4-->
+      <!--										}-->
+      <Box USE='UAV_Collision_Box'  containerField='pickingGeometry'>
+      </Box>
+      <Transform USE='Poles'  containerField='pickTarget'>
+      </Transform>
+    </PrimitivePickSensor>
+    <PrimitivePickSensor DEF='Sensor_Landing'  intersectionType='GEOMETRY' sortOrder='CLOSEST'>
+      <!--										geometry DEF UAV_Collision_Box Cylinder {-->
+      <!--												height	0.1-->
+      <!--												radius		0.4-->
+      <!--										}-->
+      <Box USE='UAV_Collision_Box'  containerField='pickingGeometry'>
+      </Box>
+      <Transform USE='Helipad'  containerField='pickTarget'>
+      </Transform>
+    </PrimitivePickSensor>
+  </Transform>
+  <!--UAV Videocamera-->
+  <Transform rotation='0 1 0 -1.5708'>
+    <!--Horizontal FoV 0.97228 rad with aspect ratio 4:3 gives 0.7061 rad in shorter angle, per VRML97 standard-->
+    <Viewpoint DEF='UAV_Camera'  fieldOfView='0.7061' description='UAV Camera Looking Down' orientation='1 0 0 -1.5708' position='0 0 0'>
+    </Viewpoint>
+  </Transform>
+</Transform>
+<Transform DEF='UAV_Competition_Environment' >
+  <Inline url='"uav_environment.x3d" '>
+  </Inline>
+</Transform>
+<Transform DEF='HUDPos' >
+  <!--HUD Position Offset-->
+  <!--Offset from the user to the HUD geometry-->
+  <Transform DEF='HUDOffset'  translation='-0.45 0.28 -0.5'>
+    <Shape>
+      <Appearance>
+        <Material diffuseColor='1 1 1'>
+        </Material>
+      </Appearance>
+      <Text DEF='HUDText1'  string='"B" "A" '>
+        <FontStyle style='BOLD' size='0.05' family='"TYPEWRITER" '>
+        </FontStyle>
+      </Text>
+    </Shape>
+  </Transform>
+</Transform>
+<ROUTE fromNode='UAV' fromField='translation' toNode='Camera_Observe' toField='translation'/>
+
+</Scene>
+</X3D>

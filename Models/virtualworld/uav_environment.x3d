@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE X3D PUBLIC "ISO//Web3D//DTD X3D 3.3//EN" "http://www.web3d.org/specifications/x3d-3.3.dtd">
+<X3D profile='Immersive' version='3.3' xmlns:xsd='http://www.w3.org/2001/XMLSchema-instance' xsd:noNamespaceSchemaLocation='http://www.web3d.org/specifications/x3d-3.3.xsd'>
+<head>
+</head>
+<!--IMAV scene static environment-->
+<!--Copyright 2012-2018 HUMUSOFT s.r.o. and The MathWorks, Inc.-->
+<Scene>
+<!--DEF SkyDome Transform {-->
+<!--	translation	0 0 0-->
+<!--	children [-->
+<!--		Inline {-->
+<!--			url ["SkyDome.x3d"]-->
+<!--		}-->
+<!--	]-->
+<!--}-->
+<Background groundAngle='0.9 1.5 1.57' groundColor='0 0.8 0 0.17255 0.81961 0.18824 0.46667 0.81961 0.44706 0.62353 0.67059 0.6' skyAngle='0.9 1.5 1.57' skyColor='0 0.2 0.7 0 0.5 0.7 0 0.5 1 0 1 1'>
+</Background>
+<Transform DEF='Static_Objects' >
+  <Transform DEF='Grid' >
+    <Inline url='"*sl3dlib/objects/Components/Grids/Grid_201x201.x3d" '>
+    </Inline>
+  </Transform>
+  <Shape DEF='Ground' >
+    <!--repeatS	TRUE-->
+    <Appearance>
+      <TextureTransform scale='1 -1'>
+      </TextureTransform>
+      <ImageTexture url='"*sl3dlib/objects/Textures/General/Gravel.jpg" '>
+      </ImageTexture>
+    </Appearance>
+    <IndexedFaceSet coordIndex='3 2 1 0 -1' colorPerVertex='false'>
+      <Coordinate point='-225 -0.1 -225 225 -0.1 -225 225 -0.1 225 -225 -0.1 225'>
+      </Coordinate>
+    </IndexedFaceSet>
+  </Shape>
+  <Transform DEF='Start_Zone'  translation='-3.5 0 0'>
+    <Shape DEF='Start_Rect' >
+      <Appearance>
+        <TextureTransform scale='100 100'>
+        </TextureTransform>
+        <ImageTexture url='"*sl3dlib/objects/Textures/General/Granite.jpg" '>
+        </ImageTexture>
+        <!--      specularColor .31 .28 .26-->
+        <Material DEF='StartZone_Mat'  shininess='0.07' emissiveColor='0.07 0.15 0.14' diffuseColor='0.34 0.71 0.69' ambientIntensity='0.05'>
+        </Material>
+      </Appearance>
+      <IndexedFaceSet coordIndex='3 2 1 0 -1'>
+        <Coordinate point='0.2 0 0.2 3.3 0 0.2 3.3 0 7.8 0.2 0 7.8'>
+        </Coordinate>
+      </IndexedFaceSet>
+    </Shape>
+    <Shape DEF='Start_Border' >
+      <Appearance>
+        <Material>
+        </Material>
+      </Appearance>
+      <IndexedFaceSet coordIndex='3 2 1 0 -1 7 6 5 4 -1 11 10 9 8 -1 15 14 13 12 -1'>
+        <Coordinate point='0 0 0 0.2 0 0 0.2 0 8 0 0 8 0 0 0 3.5 0 0 3.5 0 0.2 0 0 0.2 3.3 0 0 3.5 0 0 3.5 0 8 3.3 0 8 0 0 7.8 3.5 0 7.8 3.5 0 8 0 0 8'>
+        </Coordinate>
+      </IndexedFaceSet>
+    </Shape>
+    <Transform DEF='Take_Off'  translation='2 0.05 4'>
+      <Shape>
+        <Appearance>
+          <TextureTransform translation='-0.2 0.525' scale='0.7 1.05' rotation='-0.5' center='0.5 0.5'>
+          </TextureTransform>
+          <ImageTexture url='"uav_heliport.png" ' repeatS='false' repeatT='false'>
+          </ImageTexture>
+          <Material diffuseColor='0.5 0.5 0.5'>
+          </Material>
+        </Appearance>
+        <Cylinder side='false' radius='0.5' height='0.1' bottom='false'>
+        </Cylinder>
+      </Shape>
+    </Transform>
+  </Transform>
+  <Transform DEF='Obstacle_Zone' >
+    <Shape DEF='Obstacle_Rect' >
+      <Appearance>
+        <TextureTransform scale='50 50'>
+        </TextureTransform>
+        <ImageTexture url='"*sl3dlib/objects/Textures/General/Granite.jpg" '>
+        </ImageTexture>
+        <Material DEF='ObstZone_Mat'  shininess='0' diffuseColor='0.37 0.5 0.33' ambientIntensity='0.5'>
+        </Material>
+      </Appearance>
+      <IndexedFaceSet coordIndex='3 2 1 0 -1'>
+        <Coordinate point='0.2 0 0.2 11.8 0 0.2 11.8 0 7.8 0.2 0 7.8'>
+        </Coordinate>
+      </IndexedFaceSet>
+    </Shape>
+    <Shape DEF='Obstacle_Border' >
+      <Appearance>
+        <Material DEF='Red'  shininess='0' diffuseColor='1 1 1' ambientIntensity='0.5'>
+        </Material>
+      </Appearance>
+      <IndexedFaceSet coordIndex='3 2 1 0 -1 7 6 5 4 -1 11 10 9 8 -1 15 14 13 12 -1'>
+        <Coordinate point='0 0 0 0.2 0 0 0.2 0 8 0 0 8 0 0 0 12 0 0 12 0 0.2 0 0 0.2 11.8 0 0 12 0 0 12 0 8 11.8 0 8 0 0 7.8 12 0 7.8 12 0 8 0 0 8'>
+        </Coordinate>
+      </IndexedFaceSet>
+    </Shape>
+  </Transform>
+  <Transform DEF='Safe_Zone'  translation='12 0 0'>
+    <Shape DEF='Safe_Rect' >
+      <Appearance>
+        <TextureTransform scale='100 100'>
+        </TextureTransform>
+        <ImageTexture url='"*sl3dlib/objects/Textures/General/Granite.jpg" '>
+        </ImageTexture>
+        <!--      specularColor .31 .28 .26-->
+        <Material DEF='SafeZone_Mat'  shininess='0.07' emissiveColor='0.07 0.15 0.14' diffuseColor='0.34 0.71 0.69' ambientIntensity='0.05'>
+        </Material>
+      </Appearance>
+      <IndexedFaceSet coordIndex='3 2 1 0 -1'>
+        <Coordinate point='0.2 0 0.2 3.8 0 0.2 3.8 0 7.8 0.2 0 7.8'>
+        </Coordinate>
+      </IndexedFaceSet>
+    </Shape>
+    <Shape DEF='Safe_Border' >
+      <Appearance>
+        <Material shininess='0' diffuseColor='1 1 1' ambientIntensity='0.5'>
+        </Material>
+      </Appearance>
+      <IndexedFaceSet coordIndex='3 2 1 0 -1 7 6 5 4 -1 11 10 9 8 -1 15 14 13 12 -1'>
+        <Coordinate point='0 0 0 0.2 0 0 0.2 0 8 0 0 8 0 0 0 4 0 0 4 0 0.2 0 0 0.2 3.8 0 0 4 0 0 4 0 8 3.8 0 8 0 0 7.8 4 0 7.8 4 0 8 0 0 8'>
+        </Coordinate>
+      </IndexedFaceSet>
+    </Shape>
+  </Transform>
+</Transform>
+</Scene>
+</X3D>
