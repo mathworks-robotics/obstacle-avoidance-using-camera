@@ -27,5 +27,8 @@ finalHoverHeight = 0.8;
 % Threshold distance to execute the PID controller.
 delta = 0.1;
 
+%Sample Time
+Ts = 0.1;
+
 
 

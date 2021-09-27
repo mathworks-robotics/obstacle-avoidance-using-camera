@@ -19,8 +19,8 @@
 </ExternProtoDeclare>
 
 <ExternProtoDeclare name='Pole' url='"uav_protos.x3d#Pole" '>
-<field name='Position' type='SFVec3f' accessType='inputOutput'/>
 <field name='Color' type='SFColor' accessType='inputOutput'/>
+<field name='Position' type='SFVec3f' accessType='inputOutput'/>
 
 </ExternProtoDeclare>
 
@@ -94,70 +94,70 @@
     </Shape>
   </Transform>
 </Transform>
-<Transform DEF='Poles'  containerField='pickTarget' translation='2 0 0'>
+<Transform DEF='Poles'  translation='2 0 0'>
   <ProtoInstance DEF='Pole_1' name='Pole'>
-  <fieldValue name='Position' value='-0.5 0 3'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='-0.5 0 3'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_2' name='Pole'>
-  <fieldValue name='Position' value='-0.5 0 5.5'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='-0.5 0 5.5'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_3' name='Pole'>
-  <fieldValue name='Position' value='1.5 0 1.5'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='1.5 0 1.5'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_4' name='Pole'>
-  <fieldValue name='Position' value='1.5 0 6.5'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='1.5 0 6.5'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_5' name='Pole'>
-  <fieldValue name='Position' value='2 0 4'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='2 0 4'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_6' name='Pole'>
-  <fieldValue name='Position' value='3 0 2'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='3 0 2'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_7' name='Pole'>
-  <fieldValue name='Position' value='3.2 0 6'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='3.2 0 6'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_8' name='Pole'>
-  <fieldValue name='Position' value='4 0 4.5'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='4 0 4.5'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_9' name='Pole'>
-  <fieldValue name='Position' value='9 0 6'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='9 0 6'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_10' name='Pole'>
-  <fieldValue name='Position' value='5.5 0 6'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='5.5 0 6'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_11' name='Pole'>
-  <fieldValue name='Position' value='6 0 2.5'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='6 0 2.5'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_12' name='Pole'>
-  <fieldValue name='Position' value='7 0 7'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='7 0 7'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_13' name='Pole'>
-  <fieldValue name='Position' value='8 0 4'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='8 0 4'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_14' name='Pole'>
-  <fieldValue name='Position' value='6 0 4.5'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='6 0 4.5'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_15' name='Pole'>
-  <fieldValue name='Position' value='8.75 0 1.5'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='8.75 0 1.5'/>
   </ProtoInstance>
   <ProtoInstance DEF='Pole_16' name='Pole'>
-  <fieldValue name='Position' value='5 0 1'/>
   <fieldValue name='Color' value='1 0.5 0'/>
+  <fieldValue name='Position' value='5 0 1'/>
   </ProtoInstance>
 </Transform>
 <Transform DEF='UAV'  translation='-1.5 0 4'>
