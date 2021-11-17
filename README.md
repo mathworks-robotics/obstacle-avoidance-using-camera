@@ -4,6 +4,9 @@ This submission contains the implementation of [optical flow algorithm](https://
 This model aims at helping you to get started to use computer vision along with control systems in your ground/aerial robots.
 Using this model, you can get your UAV/UGV to avoid obstacles using the front-facing (bird's eye view) vision data of the vehicle.
 
+Check out the video explaining this example:
+[https://www.youtube.com/watch?v=YTmq13xGnLg](https://www.youtube.com/watch?v=YTmq13xGnLg)
+
 ## About the model ##
 
 The model shows the workflow to implement an optical flow algorithm for navigating a drone through the arena which has poles as the obstacles. 
