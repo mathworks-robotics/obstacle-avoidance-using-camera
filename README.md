@@ -1,6 +1,6 @@
 # Obstacle Avoidance with Camera Sensor using Simulink
 
-This submission contains the implementation of [optical flow algorithm](https://www.mathworks.com/help/vision/ref/opticalflow.html) for obstacle avoidance. Here, the drone to traverses through a [Simulink<sup>:registered:</sup> 3D Animation](https://www.mathworks.com/products/3d-animation.html) arena using optical flow algorithm calculated using the drone's front view camera.
+This submission contains the implementation of [optical flow algorithm](https://www.mathworks.com/help/vision/ref/opticalflow.html) for obstacle avoidance. Here, the drone to traverses through a [Simulink&reg; 3D Animation](https://www.mathworks.com/products/3d-animation.html) arena using optical flow algorithm calculated using the drone's front view camera.
 This model aims at helping you to get started to use computer vision along with control systems in your ground/aerial robots.
 Using this model, you can get your UAV/UGV to avoid obstacles using the front-facing (bird's eye view) vision data of the vehicle.
 
@@ -17,7 +17,7 @@ The following steps describe the workflow:
 1. Getting the input image from the on-board camera.
 2. Calculating the optical flow lines from the image using *Horn-Schunck* method
 3. Implementing an algorithm for steering the vehicle from the calculated flow lines 
-4. Implementing a switching based logic using [Stateflow<sup>:registered:</sup> ](https://www.mathworks.com/products/stateflow.html) to switch from optical flow algorithm to a PID Control algorithm.
+4. Implementing a switching based logic using [Stateflow&reg; ](https://www.mathworks.com/products/stateflow.html) to switch from optical flow algorithm to a PID Control algorithm.
 5. Visualizing the drone navigating the obstacles through the VR Sink block (used to set the UAV position/rotation and visual properties of virtual world objects) associated with the virtual world.
 
 
@@ -71,7 +71,7 @@ When you open the model and execute it, the drone will take off from the helipad
 - *Sensor Inputs:* Simulink 3D Animation Sensor inputs (camera view and estimated position)
 - *Optical Flow Lines Calculation:* Calculates the optical flow lines for the image using 'Horn-Schunk' method.
 - *Optical Flow Algorithm for Obstacle Avoidance:* Controller for steering the vehicle: 
-    - *FlowDifferences* MATLAB<sup>:registered:</sup> Function: The Optical Flow on the right and left is calculated by the system. 
+    - *FlowDifferences* MATLAB&reg; Function: The Optical Flow on the right and left is calculated by the system. 
     - *Optical flow algorithm and PID Controller for landing:*
         - *DronePositionEstimation:*
             1. *OpticalFlowAlgorithm:* The sign of the linear velocity (*V_Y*)is assigned depending on Optical Flow on Left and Right
@@ -122,12 +122,12 @@ The linear and angular velocities defined in *startScript.mlx* need to tuned if 
 The model use the following MathWorks products:
 
 1. MATLAB
-2. Simulink<sup>:registered:</sup> 
+2. Simulink&reg;
 3. Simulink 3D Animation
 4. Stateflow
-5. Aerospace Blockset <sup>TM</sup> 
+5. Aerospace Blockset&trade;
 7. Aerospace Toolbox
-8. Computer Vision Toolbox <sup>TM</sup> 
+8. Computer Vision Toolbox&trade;
 
 In case of any questions, please reach out to us at roboticsarena@mathworks.com.
 
